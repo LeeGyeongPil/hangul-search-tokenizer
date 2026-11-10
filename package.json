@@ -1,0 +1,76 @@
+{
+  "name": "hangul-search-tokenizer",
+  "version": "0.1.0",
+  "description": "Zero-dependency, synchronous Korean tokenizer for MiniSearch, Orama, FlexSearch and VitePress local search.",
+  "keywords": [
+    "korean",
+    "hangul",
+    "tokenizer",
+    "search",
+    "minisearch",
+    "orama",
+    "flexsearch",
+    "vitepress",
+    "full-text-search"
+  ],
+  "license": "MIT",
+  "author": "LeeGyeongPil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeeGyeongPil/hangul-search-tokenizer.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./minisearch": {
+      "types": "./dist/adapters/minisearch.d.ts",
+      "default": "./dist/adapters/minisearch.js"
+    },
+    "./orama": {
+      "types": "./dist/adapters/orama.d.ts",
+      "default": "./dist/adapters/orama.js"
+    },
+    "./flexsearch": {
+      "types": "./dist/adapters/flexsearch.d.ts",
+      "default": "./dist/adapters/flexsearch.js"
+    },
+    "./vitepress": {
+      "types": "./dist/adapters/vitepress.d.ts",
+      "default": "./dist/adapters/vitepress.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && vitest run",
+    "bench": "node bench/run.mjs",
+    "bench:download": "node bench/download-miracl.mjs",
+    "bench:miracl": "node bench/miracl.mjs",
+    "example": "node examples/quickstart.mjs",
+    "check:dist": "npm run build && git diff --exit-code -- dist"
+  },
+  "devDependencies": {
+    "@orama/orama": "3.1.18",
+    "@types/node": "26.6.6",
+    "flexsearch": "0.8.212",
+    "garu-minisearch-tokenizer": "0.7.0",
+    "minisearch": "7.2.0",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}

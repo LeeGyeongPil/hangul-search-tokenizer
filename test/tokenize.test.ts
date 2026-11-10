@@ -87,3 +87,27 @@ describe('option validation (AC-1)', () => {
     expect(() => tokenize(42 as unknown as string)).toThrow(TypeError);
   });
 });
+
+describe('particle after a quote, bracket or symbol (fix 0.1.1)', () => {
+  it('drops a lone particle glued to a closing quote', () => {
+    expect(tokenize("'설정'을 연다")).toEqual(['설정', '연']);
+    expect(tokenize("'로그'를 본다")).toEqual(tokenize('로그를 본다'));
+  });
+
+  it('drops a lone particle after brackets and double quotes', () => {
+    expect(tokenize('(API)를 호출')).not.toContain('를');
+    expect(tokenize('[링크]를 누른다')).not.toContain('를');
+    expect(tokenize('"버튼"은 파랗다')).not.toContain('은');
+  });
+
+  it('reports the dropped particle in analyze()', () => {
+    const josa = createKoreanTokenizer().analyze("'설정'을").find((t) => t.surface === '을');
+    expect(josa).toMatchObject({ surface: '을', removed: ['을'], terms: [] });
+  });
+
+  it('keeps one-syllable words separated by whitespace or after an opening quote', () => {
+    expect(tokenize('을 를')).toEqual(['을', '를']);
+    expect(tokenize('이 문서')).toContain('이');
+    expect(tokenize("'이' 버튼")).toContain('이');
+  });
+});

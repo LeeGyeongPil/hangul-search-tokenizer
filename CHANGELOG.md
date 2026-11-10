@@ -5,6 +5,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-11
+
+### Fixed
+- A particle after a closing quote, bracket or symbol (`'설정'을`, `(API)를`, `[링크]를`) is no longer indexed as its own term, so `'도움말'을` no longer matches documents that lack the word. Re-index existing data to pick up the change.
+
 ## [0.1.0] - 2026-11-10
 
 ### Added

@@ -33,3 +33,16 @@ describe('MiniSearch adapter (AC-2)', () => {
     expect(search('엔진')).toContain(3);
   });
 });
+
+describe('MiniSearch adapter: particle after a closing quote', () => {
+  it("does not let \"'도움말'을\" match a document without the word", () => {
+    const engine = new MiniSearch({ fields: ['text'], ...miniSearchOptions() });
+    engine.addAll([
+      { id: 1, text: "'저장' 버튼을 누른다" },
+      { id: 2, text: "'설정'을 연다" },
+    ]);
+    const ids = (q: string) => engine.search(q).map((hit) => Number(hit.id));
+    expect(ids("'도움말'을")).toEqual([]);
+    expect(ids("'저장'을")).toEqual([1]);
+  });
+});

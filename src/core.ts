@@ -169,8 +169,13 @@ export function coreTokenize(text: string, opts: CoreOptions, key: string, mode:
     var stem = surface;
     var removed: string[] = [];
     if (script === 'hangul') {
-      if (adjacent && prevScript !== 'hangul' && (t.josaSet.has(surface) || t.josaShortSet.has(surface))) {
-        // A particle glued to a Latin/digit/CJK word (API를, v2에서): drop it entirely.
+      if (
+        (t.josaSet.has(surface) || t.josaShortSet.has(surface)) &&
+        ((adjacent && prevScript !== 'hangul') ||
+          (prevEnd >= 0 && normalized.slice(prevEnd, index) !== '' && !/\s/.test(normalized.slice(prevEnd, index))))
+      ) {
+        // A particle glued to a Latin/digit/CJK word (API를, v2에서), or following a closing
+        // quote/bracket/symbol inside the same word ('설정'을, (API)를): drop it entirely.
         stem = '';
         removed = [surface];
       } else {

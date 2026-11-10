@@ -1,6 +1,6 @@
 {
   "name": "hangul-search-tokenizer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Zero-dependency, synchronous Korean tokenizer for MiniSearch, Orama, FlexSearch and VitePress local search.",
   "keywords": [
     "korean",

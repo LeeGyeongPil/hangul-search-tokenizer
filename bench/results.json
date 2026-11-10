@@ -1,0 +1,172 @@
+{
+  "corpus": {
+    "documents": 80,
+    "queries": 78,
+    "queryTypes": [
+      "noun",
+      "noun+josa",
+      "verb",
+      "mixed",
+      "compound",
+      "trap"
+    ]
+  },
+  "rows": [
+    {
+      "name": "minisearch-default",
+      "description": "MiniSearch defaults (split on spaces/punctuation, exact match)",
+      "metrics": {
+        "recall5": 0.3167,
+        "recall10": 0.3167,
+        "mrr10": 0.4231,
+        "p5": 0.4231
+      },
+      "byType": {
+        "noun": 0.3102,
+        "noun+josa": 0.651,
+        "verb": 0,
+        "mixed": 0.8,
+        "compound": 0.05,
+        "trap": 0.0417
+      },
+      "index": {
+        "bytes": 15245,
+        "terms": 441
+      },
+      "timings": {
+        "indexMs": 3,
+        "queryMsPerQuery": 0.01
+      }
+    },
+    {
+      "name": "vitepress-default",
+      "description": "VitePress local search defaults (CJK segmenter, prefix, fuzzy 0.2)",
+      "metrics": {
+        "recall5": 0.8771,
+        "recall10": 0.8793,
+        "mrr10": 0.9103,
+        "p5": 0.8778
+      },
+      "byType": {
+        "noun": 1,
+        "noun+josa": 0.8802,
+        "verb": 0.6574,
+        "mixed": 1,
+        "compound": 0.6667,
+        "trap": 1
+      },
+      "index": {
+        "bytes": 15240,
+        "terms": 441
+      },
+      "timings": {
+        "indexMs": 1.8,
+        "queryMsPerQuery": 0.05
+      }
+    },
+    {
+      "name": "char-bigram",
+      "description": "Overlapping 2-character pieces, no linguistic rules",
+      "metrics": {
+        "recall5": 0.9081,
+        "recall10": 0.9295,
+        "mrr10": 0.9338,
+        "p5": 0.7605
+      },
+      "byType": {
+        "noun": 1,
+        "noun+josa": 1,
+        "verb": 0.8056,
+        "mixed": 0.8,
+        "compound": 1,
+        "trap": 1
+      },
+      "index": {
+        "bytes": 23303,
+        "terms": 741
+      },
+      "timings": {
+        "indexMs": 2.8,
+        "queryMsPerQuery": 0.01
+      }
+    },
+    {
+      "name": "hst",
+      "description": "hangul-search-tokenizer, default options",
+      "metrics": {
+        "recall5": 0.9459,
+        "recall10": 0.9502,
+        "mrr10": 0.9808,
+        "p5": 0.9513
+      },
+      "byType": {
+        "noun": 0.9722,
+        "noun+josa": 1,
+        "verb": 0.9306,
+        "mixed": 1,
+        "compound": 0.4667,
+        "trap": 1
+      },
+      "index": {
+        "bytes": 12414,
+        "terms": 368
+      },
+      "timings": {
+        "indexMs": 4,
+        "queryMsPerQuery": 0.01
+      }
+    },
+    {
+      "name": "hst+bigram",
+      "description": "hangul-search-tokenizer with bigram: true",
+      "metrics": {
+        "recall5": 0.9893,
+        "recall10": 0.9936,
+        "mrr10": 0.9936,
+        "p5": 0.9218
+      },
+      "byType": {
+        "noun": 1,
+        "noun+josa": 1,
+        "verb": 0.9722,
+        "mixed": 1,
+        "compound": 1,
+        "trap": 1
+      },
+      "index": {
+        "bytes": 16910,
+        "terms": 526
+      },
+      "timings": {
+        "indexMs": 2.2,
+        "queryMsPerQuery": 0.02
+      }
+    },
+    {
+      "name": "garu",
+      "description": "garu-minisearch-tokenizer (morphological analysis, WASM)",
+      "metrics": {
+        "recall5": 0.9521,
+        "recall10": 0.9564,
+        "mrr10": 0.9615,
+        "p5": 0.9487
+      },
+      "byType": {
+        "noun": 0.9444,
+        "noun+josa": 1,
+        "verb": 1,
+        "mixed": 1,
+        "compound": 0.9,
+        "trap": 0.8333
+      },
+      "index": {
+        "bytes": 11252,
+        "terms": 329
+      },
+      "timings": {
+        "indexMs": 95.2,
+        "queryMsPerQuery": 0.12
+      }
+    }
+  ]
+}

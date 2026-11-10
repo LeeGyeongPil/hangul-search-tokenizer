@@ -1,0 +1,28 @@
+# Tests, the committed dist/ check and the quick start run offline on three Node.js versions.
+name: ci
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1"   # weekly, to notice dependency or runtime changes early
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      # dist/ is committed so that git URL installs work without a build step;
+      # this fails when it no longer matches the sources.
+      - run: npm run check:dist
+      - run: npm run bench
+      - run: npm run example

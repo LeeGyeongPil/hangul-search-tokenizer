@@ -2,9 +2,7 @@
 
 [한국어](README.md) | **English**
 
-A zero-dependency, synchronous Korean tokenizer for MiniSearch, Orama, FlexSearch and VitePress local search. It cuts particles (josa) and verb endings (eomi) at the end of each word, so a query for `학교` (school) also finds `학교에` (at school) and `학교를` (school + object marker), and `먹다` (to eat) finds `먹었다` (ate). Install: `npm install github:LeeGyeongPil/hangul-search-tokenizer` (not published to the npm registry yet). The README includes an honest benchmark that also lists garu, a morphological analyzer that is more accurate in some cases. The benchmark corpus is small and written by the author, so treat the numbers as a direction, not a proof.
-
-It is a tokenizer that, with one line of configuration, reduces the problem of searches missing because of particles and endings when you put Korean documents into keyword search. It has no runtime dependencies and works synchronously (no `await`).
+A zero-dependency, synchronous (no `await`) Korean tokenizer for MiniSearch, Orama, FlexSearch and VitePress local search. With one line of configuration it stops searches from missing because of particles and endings: it cuts particles (josa) and verb endings (eomi) at the end of each word, so a query for `학교` (school) also finds `학교에` (at school) and `학교를` (school + object marker), and `먹다` (to eat) finds `먹었다` (ate). Install: `npm install github:LeeGyeongPil/hangul-search-tokenizer` (not published to the npm registry yet). The README includes an honest benchmark that also lists garu, a morphological analyzer that is more accurate in some cases. The benchmark corpus is small and written by the author, so treat the numbers as a direction, not a proof.
 
 ![Example run: the default settings find 0 of 9 queries, this library finds 9](docs/images/01-quickstart.png)
 

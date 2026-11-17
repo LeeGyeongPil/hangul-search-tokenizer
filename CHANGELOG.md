@@ -3,7 +3,10 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.1.3] - 2026-11-18
+
+### Documentation
+- Correct the npm bundle size in the comparison table (about 25KB, including both READMEs).
 
 ## [0.1.2] - 2026-11-18
 

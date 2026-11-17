@@ -296,7 +296,7 @@ npm run bench:miracl
 |---|---|---|---|
 | Method | Particle and ending removal rules (no dictionary) | Morphological analysis (WASM model) | Whitespace split + prefix match + fuzzy |
 | Initialization | Synchronous | Asynchronous (`await createTokenizer()`) | None |
-| Size | Runtime JS about 17KB (about 5.5KB gzip), npm bundle about 18KB (including README) | Model and WASM about 1.8MB | None (built in) |
+| Size | Runtime JS about 17KB (about 5.5KB gzip), npm bundle about 25KB (including both READMEs) | Model and WASM about 1.8MB | None (built in) |
 | Supported engines | MiniSearch · Orama · FlexSearch · VitePress | MiniSearch · Orama | VitePress |
 | Irregular verbs and compound words | Weak (outside the rules' range, partly covered by `bigram`) | Strong | Weak |
 | Words not in a dictionary (`아이`, etc.) | Defended with an exception list and options | Distinguished by the dictionary | Not applicable |

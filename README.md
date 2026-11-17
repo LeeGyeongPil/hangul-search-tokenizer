@@ -292,7 +292,7 @@ npm run bench:miracl
 |---|---|---|---|
 | 방식 | 조사·어미 제거 규칙(사전 없음) | 형태소 분석(WASM 모델) | 공백 분리 + 접두 일치 + fuzzy |
 | 초기화 | 동기 | 비동기(`await createTokenizer()`) | 없음 |
-| 크기 | 런타임 JS 약 17KB(gzip 약 5.5KB), npm 묶음 약 18KB(README 포함) | 모델·WASM 약 1.8MB | 없음(내장) |
+| 크기 | 런타임 JS 약 17KB(gzip 약 5.5KB), npm 묶음 약 25KB(README 두 언어 포함) | 모델·WASM 약 1.8MB | 없음(내장) |
 | 지원 엔진 | MiniSearch·Orama·FlexSearch·VitePress | MiniSearch·Orama | VitePress |
 | 불규칙 용언·복합어 | 약함(규칙 범위 밖, `bigram` 으로 일부 보완) | 강함 | 약함 |
 | 사전 없는 낱말(`아이` 등) | 예외 목록과 옵션으로 방어 | 사전으로 구분 | 해당 없음 |

@@ -69,9 +69,9 @@ export function coreTokenize(text: string, opts: CoreOptions, key: string, mode:
       // Verb/adjective endings (eomi): removed when at least `minStemLength` characters stay.
       var eomi = words(
         '했습니다 하였습니다 었습니다 았습니다 였습니다 겠습니다 했어요 었어요 았어요 하였다 었다고 았다고 했다고 한다고 ' +
-        '합니다 됩니다 습니다 으면서 었으면 았으면 하였 했던 했고 했지만 했으며 했는데 했으나 했다 하는 하면 하고 하여 해서 하게 하며 하지 하기 하다 한다 ' +
+        '하십시오 하세요 해요 해야 합니다 됩니다 습니다 으면서 었으면 았으면 하였 했던 했고 했지만 했으며 했는데 했으나 했다 하는 하면 하고 하여 해서 하게 하며 하지 하기 하다 한다 ' +
         '되었다 되었 됐다 됐던 됐고 되는 되면 되고 되어 되지 되며 되다 된다 ' +
-        '었다 았다 였다 겠다 었고 았고 었던 았던 었는 았는 었으 았으 으면 으며 으니 으나 으려 지만 는데 는다 면서 어서 아서 어도 아도 어요 아요 에요 ' +
+        '었다 았다 였다 겠다 었고 았고 었던 았던 었는 았는 었으 았으 으면 으며 으니 으나 으려 지만 는데 는다 면서 어서 아서 어도 아도 어요 아요 에요 니다 ' +
         '다고 다는 다며 었 았 였 겠 했 됐 다'
       ).concat(opts.extraEomi);
       // Removed only when at least two characters stay (short, ambiguous endings).
@@ -151,6 +151,13 @@ export function coreTokenize(text: string, opts: CoreOptions, key: string, mode:
       var code = stem.charCodeAt(stem.length - 1);
       if (code >= 0xac00 && code <= 0xd7a3 && (code - 0xac00) % 28 === 20) {
         stem = stem.slice(0, stem.length - 1) + String.fromCharCode(code - 20);
+      }
+    }
+    // Polite '-ㅂ니다' on a stem without a final consonant: 봅니다 -> 봅 -> 보, 만듭니다 -> 만드.
+    if (eomiCut && removed.length > 0 && removed[removed.length - 1] === '니다' && stem.length > 0) {
+      var code2 = stem.charCodeAt(stem.length - 1);
+      if (code2 >= 0xac00 && code2 <= 0xd7a3 && (code2 - 0xac00) % 28 === 17) {
+        stem = stem.slice(0, stem.length - 1) + String.fromCharCode(code2 - 17);
       }
     }
     return { stem: stem, removed: removed };

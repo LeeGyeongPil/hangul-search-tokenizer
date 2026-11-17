@@ -111,3 +111,24 @@ describe('particle after a quote, bracket or symbol (fix 0.1.1)', () => {
     expect(tokenize("'이' 버튼")).toContain('이');
   });
 });
+
+describe('polite endings (regression)', () => {
+  it('cuts -하세요, -해요, -해야, -하십시오', () => {
+    for (const w of ['설치하세요', '설치해요', '설치해야', '설치하십시오']) expect(tokenize(w)).toEqual(['설치']);
+    expect(tokenize('실행하세요')).toEqual(['실행']);
+    expect(tokenize('확인해요')).toEqual(['확인']);
+  });
+
+  it('restores the final consonant before -ㅂ니다', () => {
+    expect(tokenize('봅니다')).toEqual(['보']);
+    expect(tokenize('갑니다')).toEqual(['가']);
+    expect(tokenize('만듭니다')).toEqual(['만드']);
+  });
+
+  it('keeps already-correct results', () => {
+    expect(tokenize('설치합니다')).toEqual(['설치']);
+    expect(tokenize('갔다')).toEqual(['가']);
+    expect(tokenize('보다')).toEqual(['보']);
+    expect(tokenize('결과', { noStrip: ['결과'] })).toEqual(['결과']);
+  });
+});

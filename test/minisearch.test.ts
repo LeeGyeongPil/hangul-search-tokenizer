@@ -46,3 +46,20 @@ describe('MiniSearch adapter: particle after a closing quote', () => {
     expect(ids("'저장'을")).toEqual([1]);
   });
 });
+
+describe('polite endings in MiniSearch (regression)', () => {
+  it('finds documents written with -하세요, -해요, -ㅂ니다', () => {
+    const engine = new MiniSearch({ fields: ['text'], ...miniSearchOptions() });
+    engine.addAll([
+      { id: 1, text: 'npm 으로 패키지를 설치하세요' },
+      { id: 2, text: '서버를 실행하세요' },
+      { id: 3, text: '설정 파일을 확인해요' },
+      { id: 4, text: '결과를 봅니다' },
+    ]);
+    const ids = (q: string) => engine.search(q).map((hit) => Number(hit.id));
+    expect(ids('설치')).toEqual([1]);
+    expect(ids('실행')).toEqual([2]);
+    expect(ids('확인')).toEqual([3]);
+    expect(ids('보다')).toEqual([4]);
+  });
+});

@@ -256,8 +256,8 @@ All configurations were run on MiniSearch 7.2.0. P@5 is the proportion of correc
 | minisearch-default (whitespace split) | 0.317 | 0.317 | 0.423 | 0.423 | 15245 | 441 |
 | vitepress-default (prefix match + fuzzy) | 0.877 | 0.879 | 0.910 | 0.878 | 15240 | 441 |
 | char-bigram (character 2-gram) | 0.908 | 0.929 | 0.934 | 0.760 | 23303 | 741 |
-| hst | 0.946 | 0.950 | 0.981 | 0.951 | 12414 | 368 |
-| hst + `bigram` | 0.989 | 0.994 | 0.994 | 0.922 | 16910 | 526 |
+| hst | 0.946 | 0.950 | 0.981 | 0.951 | 12377 | 367 |
+| hst + `bigram` | 0.989 | 0.994 | 0.994 | 0.922 | 16685 | 519 |
 | garu 0.7.0 (morphological analysis) | 0.952 | 0.956 | 0.962 | 0.949 | 11252 | 329 |
 
 Recall@10 by query type:
@@ -311,6 +311,7 @@ Because it is a dictionary-free set of rules, the following can be wrong (these 
 
 - **Over-stripping**: the `서` of `인증서` ("certificate") is seen as an ending and cut to `인증` ("authentication"), so documents with `인증 키` ("authentication key") get mixed in. A 2-character `…도` word not on the exception list (`수도` → `수`) is the same. You can prevent it with `noStrip` and `minStemLength`.
 - **Irregular and contracted verbs**: `백업` ("backup") can't find `백업해` ("back up"), `바꾸다` ("to change") can't find `바꿀` ("will change"), and `만들다` ("to make") can't find `만들어` ("make", the -eo form). It also doesn't restore the base form, as in `들었다` → `듣다`.
+- **`-ㅂ니다` restoration**: the `ㅂ` final consonant before `니다` is always removed (`봅니다` → `보`). A stem that really ends in `ㅂ` (`좁니다` → `조`) and `ㄹ` dropping (`만듭니다` → `만드`, while `만들다` gives `만들`) come out wrong.
 - **Inside compound words**: `엔진` → `검색엔진` needs `bigram: true`.
 - **Short endings**: `고·면·서·지·게` are cut only when the remaining stem is 2 or more characters (to prevent `학교` → `학`).
 
@@ -331,13 +332,13 @@ If your documents have many such cases, compare with garu too.
 ## Versions and compatibility
 
 - It follows semantic versioning (SemVer). During 0.x, the API may change in a minor version, and any change is recorded in [CHANGELOG.md](CHANGELOG.md).
-- The current version is 0.1.1 (the first version was 0.1.0). Engine versions used in the benchmark: MiniSearch 7.2.0, Orama 3.1.18, FlexSearch 0.8.212, garu-minisearch-tokenizer 0.7.0.
+- The current version is 0.1.2 (the first version was 0.1.0). Engine versions used in the benchmark: MiniSearch 7.2.0, Orama 3.1.18, FlexSearch 0.8.212, garu-minisearch-tokenizer 0.7.0.
 
 ## Development and contributing
 
 ```bash
 npm ci
-npm test              # build, then 50 tests
+npm test              # build, then 54 tests
 npm run bench         # small benchmark
 npm run example       # quick-start example
 npm run check:dist    # check that the committed dist/ matches the source build result

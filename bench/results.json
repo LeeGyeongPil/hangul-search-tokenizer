@@ -34,7 +34,7 @@
         "terms": 441
       },
       "timings": {
-        "indexMs": 3,
+        "indexMs": 2.5,
         "queryMsPerQuery": 0.01
       }
     },
@@ -60,8 +60,8 @@
         "terms": 441
       },
       "timings": {
-        "indexMs": 1.8,
-        "queryMsPerQuery": 0.05
+        "indexMs": 1.5,
+        "queryMsPerQuery": 0.04
       }
     },
     {
@@ -86,7 +86,7 @@
         "terms": 741
       },
       "timings": {
-        "indexMs": 2.8,
+        "indexMs": 2.5,
         "queryMsPerQuery": 0.01
       }
     },
@@ -108,11 +108,11 @@
         "trap": 1
       },
       "index": {
-        "bytes": 12414,
-        "terms": 368
+        "bytes": 12377,
+        "terms": 367
       },
       "timings": {
-        "indexMs": 4,
+        "indexMs": 3.5,
         "queryMsPerQuery": 0.01
       }
     },
@@ -134,12 +134,12 @@
         "trap": 1
       },
       "index": {
-        "bytes": 16910,
-        "terms": 526
+        "bytes": 16685,
+        "terms": 519
       },
       "timings": {
-        "indexMs": 2.2,
-        "queryMsPerQuery": 0.02
+        "indexMs": 1.2,
+        "queryMsPerQuery": 0.01
       }
     },
     {
@@ -164,8 +164,8 @@
         "terms": 329
       },
       "timings": {
-        "indexMs": 95.2,
-        "queryMsPerQuery": 0.12
+        "indexMs": 50.5,
+        "queryMsPerQuery": 0.06
       }
     }
   ]

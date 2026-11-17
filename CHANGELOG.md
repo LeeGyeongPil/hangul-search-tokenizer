@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-18
+
+### Fixed
+- Polite endings `-하세요`, `-해요`, `-해야` and `-하십시오` are now cut (`설치하세요` → `설치`), so queries such as `설치` and `실행` find those documents.
+- `-ㅂ니다` after a stem without a final consonant now maps to the dictionary form: `봅니다` → `보`, `갑니다` → `가`, `만듭니다` → `만드` (previously `봅니`, `갑니`, `만듭니`). A stem that really ends in `ㅂ` (`좁니다`) becomes `조`; see Limitations.
+- Re-index existing data to pick up the change: terms produced for these words are different.
+
 ## [0.1.1] - 2026-11-11
 
 ### Fixed
